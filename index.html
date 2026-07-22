@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Raguro — IT Support &amp; Operations Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0B1220;
+    --navy-800:#16233A;
+    --navy-700:#1E2E4A;
+    --paper:#F6F7F9;
+    --ink:#1A2233;
+    --steel:#5B6B85;
+    --green:#2FA36B;
+    --green-dim:#1F7A4E;
+    --amber:#D98B2B;
+    --slate:#8891A3;
+    --line:#E2E6ED;
+    --line-dark:#2A3B5A;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--green); outline-offset:2px;}
+
+  /* ---- Status bar ---- */
+  .statusbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy-950);
+    color:#E7ECF5;
+    border-bottom:1px solid var(--line-dark);
+    font-family:var(--mono);
+    font-size:0.78rem;
+    letter-spacing:0.02em;
+  }
+  .statusbar-inner{
+    max-width:1080px; margin:0 auto; padding:10px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--green); display:inline-block; margin-right:8px;
+    box-shadow:0 0 0 0 rgba(47,163,107,0.6);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(47,163,107,0.55);}
+    70%{box-shadow:0 0 0 7px rgba(47,163,107,0);}
+    100%{box-shadow:0 0 0 0 rgba(47,163,107,0);}
+  }
+  .statusbar .right{color:var(--slate); display:flex; gap:18px;}
+  .statusbar .right span{white-space:nowrap;}
+  @media (max-width:640px){ .statusbar .right{display:none;} }
+
+  /* ---- Hero ---- */
+  .hero{
+    background:linear-gradient(180deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    color:#EDF1F8;
+    padding:64px 24px 40px;
+  }
+  .hero-inner{max-width:1080px; margin:0 auto;}
+  .eyebrow{
+    font-family:var(--mono); font-size:0.75rem; color:var(--green);
+    text-transform:uppercase; letter-spacing:0.12em; margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--mono); font-weight:600;
+    font-size:clamp(2rem, 5vw, 3.1rem);
+    margin:0 0 10px; letter-spacing:-0.01em;
+  }
+  .role{
+    font-size:1.15rem; color:#B9C4D6; margin:0 0 28px; font-weight:400;
+  }
+  .stat-row{
+    display:flex; flex-wrap:wrap; gap:12px; margin-top:8px;
+  }
+  .stat-pill{
+    border:1px solid var(--line-dark);
+    background:rgba(255,255,255,0.03);
+    border-radius:6px; padding:10px 16px;
+    font-family:var(--mono); font-size:0.82rem;
+  }
+  .stat-pill b{display:block; font-size:1.15rem; color:#fff; font-weight:600;}
+  .stat-pill span{color:var(--slate);}
+
+  /* ---- Ticker ---- */
+  .ticker-wrap{
+    background:var(--navy-700); border-top:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+    overflow:hidden; white-space:nowrap;
+  }
+  .ticker{
+    display:inline-block; padding:10px 0;
+    font-family:var(--mono); font-size:0.8rem; color:#C9D3E4;
+    animation:scroll 26s linear infinite;
+  }
+  .ticker span{margin-right:48px;}
+  .ticker .dot-sm{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:8px;}
+  @keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker{animation:none;}
+    .dot{animation:none;}
+  }
+
+  /* ---- Sections ---- */
+  section{max-width:1080px; margin:0 auto; padding:56px 24px;}
+  .section-head{margin-bottom:32px;}
+  .section-label{
+    font-family:var(--mono); font-size:0.75rem; color:var(--steel);
+    text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;
+  }
+  h2{font-family:var(--mono); font-size:1.5rem; margin:0; font-weight:600;}
+
+  .grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
+  @media (max-width:720px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    border:1px solid var(--line); border-radius:8px; padding:22px;
+    background:#fff; transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover{border-color:var(--green); transform:translateY(-2px);}
+  .card h3{font-size:1.02rem; margin:0 0 8px; font-family:var(--sans); font-weight:700;}
+  .card p{margin:0; color:var(--steel); font-size:0.92rem;}
+  .tag{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono); font-size:0.7rem; text-transform:uppercase;
+    letter-spacing:0.06em; padding:3px 9px; border-radius:100px;
+    margin-bottom:12px; font-weight:600;
+  }
+  .tag .dot-sm{width:6px;height:6px;border-radius:50%;display:inline-block;}
+  .tag-active{background:#E7F5EC; color:var(--green-dim);}
+  .tag-active .dot-sm{background:var(--green);}
+  .tag-progress{background:#FBF0DE; color:#9C6116;}
+  .tag-progress .dot-sm{background:var(--amber);}
+  .tag-planned{background:#EEF0F4; color:var(--steel);}
+  .tag-planned .dot-sm{background:var(--slate);}
+
+  /* ---- Incident log ---- */
+  .log{background:var(--navy-950); border-radius:10px; overflow:hidden;}
+  .log-row{
+    display:flex; gap:20px; padding:20px 24px;
+    border-bottom:1px solid var(--line-dark); color:#DCE3EE;
+  }
+  .log-row:last-child{border-bottom:none;}
+  .log-time{
+    font-family:var(--mono); font-size:0.78rem; color:var(--slate);
+    min-width:96px; padding-top:2px;
+  }
+  .log-body h3{margin:0 0 6px; font-size:1rem; font-family:var(--sans); color:#fff;}
+  .log-body p{margin:0; font-size:0.88rem; color:#AEB9CC;}
+  @media (max-width:600px){ .log-row{flex-direction:column; gap:6px;} .log-time{min-width:auto;} }
+
+  /* ---- Education ---- */
+  .edu-row{
+    display:flex; justify-content:space-between; gap:20px;
+    padding:18px 0; border-bottom:1px solid var(--line);
+  }
+  .edu-row:last-child{border-bottom:none;}
+  .edu-row h3{margin:0 0 4px; font-size:1rem;}
+  .edu-row p{margin:0; color:var(--steel); font-size:0.88rem;}
+  .edu-badge{
+    font-family:var(--mono); font-size:0.72rem; color:var(--green-dim);
+    background:#E7F5EC; padding:4px 10px; border-radius:100px; height:fit-content;
+    white-space:nowrap;
+  }
+
+  /* ---- Contact ---- */
+  .contact{background:var(--navy-950); color:#EDF1F8; border-radius:10px; padding:40px;}
+  .contact h2{color:#fff;}
+  .contact p.lead{color:var(--slate); margin:8px 0 24px; max-width:520px;}
+  .field{margin-bottom:16px;}
+  label{display:block; font-family:var(--mono); font-size:0.75rem; color:var(--slate); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;}
+  input, textarea{
+    width:100%; background:var(--navy-800); border:1px solid var(--line-dark);
+    border-radius:6px; padding:11px 12px; color:#EDF1F8; font-family:var(--sans); font-size:0.92rem;
+  }
+  textarea{min-height:100px; resize:vertical;}
+  .btn{
+    font-family:var(--mono); font-size:0.85rem; font-weight:600;
+    background:var(--green); color:#06170F; border:none; border-radius:6px;
+    padding:12px 22px; cursor:pointer; letter-spacing:0.02em;
+  }
+  .btn:hover{background:#39B87A;}
+  .contact-direct{margin-top:22px; font-size:0.85rem; color:var(--slate);}
+  .contact-direct a{color:#EDF1F8; text-decoration:underline;}
+
+  footer{
+    text-align:center; padding:32px 24px; color:var(--steel);
+    font-family:var(--mono); font-size:0.75rem;
+  }
+</style>
+</head>
+<body>
+
+  <div class="statusbar">
+    <div class="statusbar-inner">
+      <div><span class="dot"></span>ALL SYSTEMS OPERATIONAL</div>
+      <div class="right">
+        <span>UPTIME: 9+ YRS</span>
+        <span>ROLE: DUAL-COORDINATOR</span>
+        <span>LAST DEPLOY: PRESENT</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">// personal status page</div>
+      <h1>Paul Raguro</h1>
+      <p class="role">IT Support &amp; Operations Specialist — VoIP/UC Systems, Facility &amp; Emergency Coordination</p>
+      <div class="stat-row">
+        <div class="stat-pill"><b>9+ yrs</b><span>Support &amp; Operations</span></div>
+        <div class="stat-pill"><b>2</b><span>Concurrent Roles Held</span></div>
+        <div class="stat-pill"><b>Cum Laude</b><span>BSBA, Operations Mgmt</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span><span class="dot-sm"></span>VoIP / Unified Communications — operational</span>
+      <span><span class="dot-sm"></span>Technical Support — operational</span>
+      <span><span class="dot-sm"></span>Account Scheduling — operational</span>
+      <span><span class="dot-sm"></span>Facility &amp; Emergency Coordination — operational</span>
+      <span><span class="dot-sm"></span>VoIP / Unified Communications — operational</span>
+      <span><span class="dot-sm"></span>Technical Support — operational</span>
+      <span><span class="dot-sm"></span>Account Scheduling — operational</span>
+      <span><span class="dot-sm"></span>Facility &amp; Emergency Coordination — operational</span>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="section-head">
+      <div class="section-label">Core systems</div>
+      <h2>What I support</h2>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Technical Support &amp; VoIP/UC</h3>
+        <p>Nine-plus years resolving issues across voice and unified-communications systems, keeping technical operations running with minimal downtime.</p>
+      </div>
+      <div class="card">
+        <h3>Account Scheduling</h3>
+        <p>Coordinating schedules and resources across accounts to keep coverage aligned with operational demand.</p>
+      </div>
+      <div class="card">
+        <h3>Facility &amp; Emergency Coordination</h3>
+        <p>Acting coordinator for facility operations and emergency response readiness, held alongside the scheduling role.</p>
+      </div>
+      <div class="card">
+        <h3>Security &amp; Compliance Foundations</h3>
+        <p>Working knowledge of Microsoft Intune, Entra ID, Windows security, and ISO/IEC 27001 principles.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="log">
+    <div class="section-head">
+      <div class="section-label">Incident log</div>
+      <h2>Career history</h2>
+    </div>
+    <div class="log">
+      <div class="log-row">
+        <div class="log-time">ACTIVE</div>
+        <div class="log-body">
+          <h3>ibex — Account Scheduling Analyst &amp; Acting Facility and Emergency Services Coordinator</h3>
+          <p>Holding two roles concurrently: scheduling analysis for accounts and coordination of facility and emergency services.</p>
+        </div>
+      </div>
+      <div class="log-row">
+        <div class="log-time">PRIOR</div>
+        <div class="log-body">
+          <h3>Acquire Asia Pacific</h3>
+          <p>Earlier experience in technical support, building the foundation now applied across VoIP/UC and operations work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="section-head">
+      <div class="section-label">Certification roadmap</div>
+      <h2>In development</h2>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <span class="tag tag-progress"><span class="dot-sm"></span>In progress</span>
+        <h3>Immediate track</h3>
+        <p>Facility Management Professional (FMP), ITIL 4, Salesforce Admin.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag-planned"><span class="dot-sm"></span>Planned</span>
+        <h3>Advanced track</h3>
+        <p>Six Sigma Green Belt, PMP, Certified Systems Administrator/Manager (CSAM).</p>
+      </div>
+      <div class="card">
+        <span class="tag tag-active"><span class="dot-sm"></span>Foundations built</span>
+        <h3>IT &amp; security</h3>
+        <p>Microsoft Intune, Microsoft Entra ID, Windows security, and the MS-700 Teams/Voice track.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag-planned"><span class="dot-sm"></span>Explored</span>
+        <h3>Compliance</h3>
+        <p>ISO 27001 Lead Implementer, as a complement to the FMP and ITIL 4 track.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <div class="section-label">Education</div>
+      <h2>Academic record</h2>
+    </div>
+    <div class="edu-row">
+      <div>
+        <h3>BSBA, Operations Management</h3>
+        <p>STI College</p>
+      </div>
+      <div class="edu-badge">Cum Laude</div>
+    </div>
+    <div class="edu-row">
+      <div>
+        <h3>Associate in Computer Technology</h3>
+        <p>Lorma Colleges</p>
+      </div>
+      <div class="edu-badge">Academic Excellence Award</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div class="section-label" style="color:var(--slate)">Open a ticket</div>
+      <h2>Get in touch</h2>
+      <p class="lead">Reaching out about a role, a project, or a collaboration? Send a message below.</p>
+      <form onsubmit="event.preventDefault(); this.querySelector('.btn').textContent='Sent';">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" type="text" placeholder="Jane dela Cruz" required>
+        </div>
+        <div class="field">
+          <label for="email">Your email</label>
+          <input id="email" type="email" placeholder="[email protected]" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="What would you like to discuss?" required></textarea>
+        </div>
+        <button class="btn" type="submit">Submit ticket</button>
+      </form>
+      <p class="contact-direct">Or reach directly — <a href="mailto:[email protected]">[email protected]</a> · <a href="#">linkedin.com/in/your-profile</a></p>
+    </div>
+  </section>
+
+  <footer>© 2026 Paul Raguro — status page last updated July 2026</footer>
+
+</body>
+</html>
